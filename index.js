@@ -1,6 +1,8 @@
 const express = reqiure('express');
 const morgan = reqiure('morgan');
 
+const port = prosses.env.PORT || 4000;
+
 const app = express();
 app.use(express.json());
 app.use(morgan('tiny'));
