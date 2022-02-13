@@ -2,23 +2,16 @@
   "products": [
     {
       "id": 1,
-      "code": "123456",
-      "productName": "saferan"
+      "code": "12347",
+      "productName": "kashk"
     },
     {
       "id": 2,
-      "code": "123457",
-      "productName": "nabat"
-    },
-    {
-      "id": 3,
-      "code": "12347",
-      "productName": "zereshk"
-    },
-    {
-      "id": 4,
       "code": "12347",
       "productName": "kashk"
     }
-  ]
+  ],
+  "users": [],
+  "orders": [],
+  "contacts": []
 }
