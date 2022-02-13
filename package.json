@@ -1,7 +1,26 @@
 {
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "eslintrc": "^1.0.6",
     "express": "^4.17.2",
     "morgan": "^1.10.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hamidreza-khushab/express-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hamidreza-khushab/express-server/issues"
+  },
+  "homepage": "https://github.com/Hamidreza-khushab/express-server#readme"
 }
