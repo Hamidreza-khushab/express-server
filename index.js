@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const home = require('./routes/home.js');
+const listproducts = require('./routes/listproducts.js');
 
 require('dotenv').config();
 const port = process.env.PORT || 4000;
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 
 app.use('/', home);
-// app.use('/listproducts', listproducts);
+app.use('/products', listproducts);
 // app.use('/users', users);
 // app.use('/orders', orders);
 // app.use('/contact', contact);
