@@ -2,34 +2,25 @@ const low = require('lowdb');
 const express = require('express');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
-const db = low(adapter);
-
-const saveProducts =
-{
-    products :
-[
-    {
-        id : 1,
-        code : '123456',
-        productName : 'saferan'
-    }
-]
-};
+const db = low(adapter).get('products');
 const router = express.Router();
 
 router.route('/')
-    .get((req, res) => {res.status(200).send(products);})
+    .get((req, res) => 
+    {
+        const products = db;
+        res.status(200).send(products);
+    })
     .post((req, res) => 
     {
         const product =
         {
-            id : saveProducts.products[ saveProducts.products.length -1 ].id +1,
+            id : db.__wrapped__.products[ db.__wrapped__.products.length -1 ].id +1,
             code : req.body.code,
             productName : req.body.productName
         };
-        saveProducts.products.push(product);
+        db.push(product).write();
         res.status(200).send(product);
-        db.defaults(saveProducts).write();     
     });
 
 module.exports = router;
