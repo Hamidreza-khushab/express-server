@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "code": "123456",
+      "productName": "saferan"
+    },
+    {
+      "id": 2,
+      "code": "123457",
+      "productName": "nabat"
+    }
+  ]
+}
