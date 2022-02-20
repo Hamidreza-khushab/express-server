@@ -5,23 +5,29 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter).get('products');
 const router = express.Router();
-
+const Products = require('../models/listProductsModels.js');
 router.route('/')
-    .get((req, res) => 
+    .get( async (req, res) => 
     {
-        const products = db;
-        res.status(200).send(products);
+        const productList =  await Products.find();
+        res.status(200).send(productList);
     })
-    .post((req, res) => 
+    .post( async (req, res) => 
     {
-        const product =
+        const newProduct =new Products(
+            {
+                code : req.body.code,
+                productName : req.body.productName
+            });
+        try 
         {
-            id : uuidv4(),
-            code : req.body.code,
-            productName : req.body.productName
-        };
-        db.push(product).write();
-        res.status(200).send(product);
+            await newProduct.save();
+            res.status(200).send(newProduct);
+        } 
+        catch (error) 
+        {
+            console.log(error.message);
+        }
     });
 router.route('/:id')
     .get((req, res) =>
