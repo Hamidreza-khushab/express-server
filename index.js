@@ -13,9 +13,6 @@ app.use(morgan('tiny'));
 
 app.use('/', home);
 app.use('/products', listproducts);
-// app.use('/users', users);
-// app.use('/orders', orders);
-// app.use('/contact', contact);
 
 mongoose.connect('mongodb://localhost:27017/product').then(() => { console.log('db connected!'); }).catch( err => {console.log('db not conacted', err.message);});
 app.listen(port, ( err ) =>
