@@ -1,9 +1,6 @@
-const low = require('lowdb');
-const { v4: uuidv4 } = require('uuid');
 const express = require('express');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter).get('products');
+const mongoose = require('mongoose');
+
 const router = express.Router();
 const Products = require('../models/listProductsModels.js');
 router.route('/')
@@ -30,12 +27,14 @@ router.route('/')
         }
     });
 router.route('/:id')
-    .get((req, res) =>
+    .get( async (req, res) =>
     {
-        const products = db;
-        const find = products.__wrapped__.products.find(item => item.id == req.params.id);
-        if (find)
-        {res.status(200).send(find);}
+        const contorolId = mongoose.isValidObjectId(req.params.id);
+        if (!contorolId)
+            return res.status(400).send('bad Id');
+        const productFindById = await Products.findById(req.params.id);
+        if (productFindById)
+        {res.status(200).send(productFindById);}
         else
         {res.status(404).send('can not find product');}
     });
